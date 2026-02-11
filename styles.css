@@ -405,6 +405,94 @@ footer {
     color: #666;
 }
 
+/* Split Item (Side-by-Side) */
+.portfolio-item-split {
+    display: flex;
+    gap: var(--sp-sm);
+    break-inside: avoid;
+    margin-bottom: var(--sp-md);
+    width: 100%;
+}
+
+.portfolio-item-split .portfolio-item {
+    flex: 1;
+    margin-bottom: 0;
+    /* Remove bottom margin inside split */
+}
+
+/* Versatility Grid - Specific Override */
+.versatility-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-md);
+}
+
+.versatility-grid .portfolio-item {
+    flex: 0 1 calc(33.333% - var(--sp-md));
+    /* 3 items per row */
+    min-width: 280px;
+    /* Responsive break */
+    margin-bottom: 0;
+}
+
+/* AI Slider */
+.ai-slider-container {
+    width: 100%;
+    overflow: hidden;
+    padding: var(--sp-md) 0;
+}
+
+.ai-slider {
+    display: flex;
+    gap: var(--sp-md);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: var(--sp-sm);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-accent) #333;
+    /* Darker track for AI section */
+    justify-content: start;
+    /* Align to start for scroll */
+}
+
+.ai-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.ai-slider::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 4px;
+}
+
+.ai-slider::-webkit-scrollbar-thumb {
+    background-color: var(--clr-accent);
+    border-radius: 4px;
+}
+
+.ai-item {
+    flex: 0 0 auto;
+    height: 500px;
+    /* Fixed height for consistency in slider */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.ai-item img {
+    height: 100%;
+    width: auto;
+    /* Maintain aspect ratio based on height */
+    object-fit: contain;
+    background-color: #000;
+}
+
+.ai-item:hover {
+    transform: scale(1.02);
+}
+
 /* Animations */
 .fade-in-up {
     opacity: 0;
@@ -455,64 +543,65 @@ footer {
     }
 }
 
-/* Horizontal Slider for Thumbnails */
-.thumbnail-slider-container {
+/* Global Portfolio Slider */
+.portfolio-slider-container {
     width: 100%;
     overflow: hidden;
     padding: var(--sp-md) 0;
 }
 
-.thumbnail-slider {
+.portfolio-slider {
     display: flex;
     gap: var(--sp-md);
     overflow-x: auto;
     scroll-behavior: smooth;
     padding-bottom: var(--sp-sm);
-    /* Space for scrollbar */
     -webkit-overflow-scrolling: touch;
-    /* Smooth scroll on iOS */
     scrollbar-width: thin;
-    /* Firefox */
     scrollbar-color: var(--clr-accent) var(--clr-accent-subtle);
+    align-items: center;
+    /* Center items vertically if heights differ slightly */
 }
 
-.thumbnail-slider::-webkit-scrollbar {
+.portfolio-slider::-webkit-scrollbar {
     height: 8px;
 }
 
-.thumbnail-slider::-webkit-scrollbar-track {
+.portfolio-slider::-webkit-scrollbar-track {
     background: var(--clr-accent-subtle);
     border-radius: 4px;
 }
 
-.thumbnail-slider::-webkit-scrollbar-thumb {
+.portfolio-slider::-webkit-scrollbar-thumb {
     background-color: var(--clr-accent);
     border-radius: 4px;
 }
 
-.thumbnail-item {
+.portfolio-slider-item {
     flex: 0 0 auto;
-    width: 300px;
-    /* Fixed width for thumbnails */
-    aspect-ratio: 16/9;
-    border-radius: 8px;
+    height: 500px;
+    /* Consistent height for all sections */
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--clr-accent-subtle);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
 
-.thumbnail-item:hover {
+.portfolio-slider-item img {
+    height: 100%;
+    width: auto;
+    /* Maintain aspect ratio */
+    object-fit: contain;
+    display: block;
+}
+
+.portfolio-slider-item:hover {
     transform: translateY(-5px);
 }
 
-.thumbnail-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* Ensure fully visible, no cropping */
-    background-color: #000;
-    /* Dark background for thumbnails usually looks better */
-}
+/* Specific Updates for AI Slider to match Global if needed, or keep distinct dark mode */
+
 
 /* Software Skills Grid */
 .software-skills-grid {
