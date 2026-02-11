@@ -256,10 +256,8 @@ a {
 }
 
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--sp-md);
-    align-items: start;
+    column-count: 3;
+    column-gap: var(--sp-md);
 }
 
 .portfolio-item {
@@ -267,18 +265,28 @@ a {
     overflow: hidden;
     background-color: var(--clr-accent-subtle);
     border-radius: 4px;
+    break-inside: avoid;
+    /* Prevent items from splitting across columns */
+    margin-bottom: var(--sp-md);
+    /* Vertical spacing between items */
+    display: inline-block;
+    /* Helps with column rendering */
+    width: 100%;
 }
 
 .portfolio-item img {
     width: 100%;
     height: auto;
+    /* Allow natural height */
     display: block;
     object-fit: contain;
+    /* Ensure no cropping */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .portfolio-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    /* Reduced scale to prevent overflow issues */
 }
 
 .portfolio-item::after {
@@ -298,12 +306,10 @@ a {
 .portfolio-item-wide {
     position: relative;
     overflow: hidden;
-    grid-column: 1 / -1;
-    /* Span full width of grid */
-    aspect-ratio: 16/9;
-    /* Preserve 16:9 */
+    width: 100%;
+    /* Full width in masonry flow */
+    margin-bottom: var(--sp-md);
     background-color: var(--clr-accent-subtle);
-    margin-top: var(--sp-sm);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
@@ -311,12 +317,9 @@ a {
 }
 
 .portfolio-item-wide img {
-    width: auto;
+    width: 100%;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
     object-fit: contain;
-    /* Ensure NO cropping */
     transition: transform 0.6s ease;
 }
 
@@ -428,6 +431,12 @@ footer {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        column-count: 2;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --sp-lg: 3rem;
@@ -442,8 +451,7 @@ footer {
     }
 
     .portfolio-grid {
-        grid-template-columns: 1fr;
-        /* Single column on mobile */
+        column-count: 1;
     }
 }
 
@@ -539,10 +547,4 @@ footer {
     font-family: var(--font-heading);
     color: var(--clr-text);
     margin-top: 0;
-}
-
-.portfolio-item img {
-    max-height: 500px;
-    object-fit: contain;
-    width: 100%;
 }
