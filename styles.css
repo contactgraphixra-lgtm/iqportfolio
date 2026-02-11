@@ -445,10 +445,104 @@ footer {
         grid-template-columns: 1fr;
         /* Single column on mobile */
     }
+}
 
-    .portfolio-item img {
-        max-height: 500px;
-        object-fit: contain;
-        width: 100%;
-    }
+/* Horizontal Slider for Thumbnails */
+.thumbnail-slider-container {
+    width: 100%;
+    overflow: hidden;
+    padding: var(--sp-md) 0;
+}
+
+.thumbnail-slider {
+    display: flex;
+    gap: var(--sp-md);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: var(--sp-sm);
+    /* Space for scrollbar */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scroll on iOS */
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: var(--clr-accent) var(--clr-accent-subtle);
+}
+
+.thumbnail-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.thumbnail-slider::-webkit-scrollbar-track {
+    background: var(--clr-accent-subtle);
+    border-radius: 4px;
+}
+
+.thumbnail-slider::-webkit-scrollbar-thumb {
+    background-color: var(--clr-accent);
+    border-radius: 4px;
+}
+
+.thumbnail-item {
+    flex: 0 0 auto;
+    width: 300px;
+    /* Fixed width for thumbnails */
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-item:hover {
+    transform: translateY(-5px);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Ensure fully visible, no cropping */
+    background-color: #000;
+    /* Dark background for thumbnails usually looks better */
+}
+
+/* Software Skills Grid */
+.software-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--sp-md);
+    margin-top: var(--sp-md);
+    text-align: center;
+}
+
+.software-item {
+    padding: var(--sp-md);
+    background: white;
+    border: 1px solid var(--clr-accent-subtle);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.software-item:hover {
+    border-color: var(--clr-accent);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.software-item h4 {
+    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    color: var(--clr-text);
+    margin-top: 0;
+}
+
+.portfolio-item img {
+    max-height: 500px;
+    object-fit: contain;
+    width: 100%;
 }
