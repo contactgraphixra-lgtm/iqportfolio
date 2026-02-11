@@ -579,8 +579,8 @@ footer {
 
 .portfolio-slider-item {
     flex: 0 0 auto;
-    height: 500px;
-    /* Consistent height for all sections */
+    height: 350px;
+    /* Reduced height for better visual balance */
     border-radius: 4px;
     overflow: hidden;
     background-color: var(--clr-accent-subtle);
