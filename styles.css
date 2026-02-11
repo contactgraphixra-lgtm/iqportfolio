@@ -265,40 +265,42 @@ a {
     max-width: 700px;
 }
 
+/* Portfolio Grid (Masonry) */
 .portfolio-grid {
     column-count: 3;
     column-gap: var(--sp-md);
+    width: 100%;
 }
 
 .portfolio-item {
+    break-inside: avoid;
+    margin-bottom: var(--sp-md);
     position: relative;
+    border-radius: 8px;
     overflow: hidden;
     background-color: var(--clr-accent-subtle);
-    border-radius: 4px;
-    break-inside: avoid;
-    /* Prevent items from splitting across columns */
-    margin-bottom: var(--sp-md);
-    /* Vertical spacing between items */
-    display: inline-block;
-    /* Helps with column rendering */
-    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
 .portfolio-item img {
     width: 100%;
     height: auto;
-    /* Allow natural height */
     display: block;
     object-fit: contain;
     /* Ensure no cropping */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.portfolio-item:hover img {
-    transform: scale(1.02);
-    /* Reduced scale to prevent overflow issues */
+.portfolio-item:hover {
+    transform: translateY(-5px);
 }
 
+.portfolio-item:hover img {
+    transform: scale(1.02);
+}
+
+/* Overlay Effect */
 .portfolio-item::after {
     content: '';
     position: absolute;
@@ -548,16 +550,18 @@ footer {
         /* Add padding since height is auto */
     }
 
-    .portfolio-grid {
-        column-count: 1;
+    @media (max-width: 600px) {
+        .portfolio-grid {
+            column-count: 1;
+        }
     }
 }
 
-/* Global Portfolio Slider */
+/* Horizontal Slider (Thumbnails & AI) */
 .portfolio-slider-container {
     width: 100%;
     overflow: hidden;
-    padding: var(--sp-md) 0;
+    padding: var(--sp-sm) 0;
 }
 
 .portfolio-slider {
@@ -569,29 +573,13 @@ footer {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--clr-accent) var(--clr-accent-subtle);
-    align-items: center;
-    /* Center items vertically if heights differ slightly */
-}
-
-.portfolio-slider::-webkit-scrollbar {
-    height: 8px;
-}
-
-.portfolio-slider::-webkit-scrollbar-track {
-    background: var(--clr-accent-subtle);
-    border-radius: 4px;
-}
-
-.portfolio-slider::-webkit-scrollbar-thumb {
-    background-color: var(--clr-accent);
-    border-radius: 4px;
 }
 
 .portfolio-slider-item {
     flex: 0 0 auto;
-    height: 250px;
-    /* Further reduced height for smaller thumbnails */
-    border-radius: 4px;
+    height: 200px;
+    /* Fixed height for consistent strip */
+    border-radius: 8px;
     overflow: hidden;
     background-color: var(--clr-accent-subtle);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -601,10 +589,12 @@ footer {
 .portfolio-slider-item img {
     height: 100%;
     width: auto;
-    /* Maintain aspect ratio */
+    /* Width adjusts to maintain aspect ratio */
     object-fit: contain;
     display: block;
 }
+
+
 
 .portfolio-slider-item:hover {
     transform: translateY(-5px);
