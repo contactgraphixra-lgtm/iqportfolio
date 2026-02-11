@@ -314,31 +314,6 @@ a {
     opacity: 1;
 }
 
-/* Thumbnail Fix: Landscape Wide Item */
-.portfolio-item-wide {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    /* Full width in masonry flow */
-    margin-bottom: var(--sp-md);
-    background-color: var(--clr-accent-subtle);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.portfolio-item-wide img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.6s ease;
-}
-
-.portfolio-item-wide:hover img {
-    transform: scale(1.02);
-}
-
 /* AI Visuals Section */
 .ai-visuals {
     padding: var(--sp-xl) 0;
@@ -364,6 +339,10 @@ a {
     color: #cccccc;
     max-width: 800px;
     margin: 0 auto var(--sp-md);
+}
+
+.ai-intro {
+    margin-bottom: var(--sp-lg);
 }
 
 .ai-image-container {
@@ -417,38 +396,25 @@ footer {
     color: #666;
 }
 
-/* Split Item (Side-by-Side) */
-.portfolio-item-split {
-    display: flex;
-    gap: var(--sp-sm);
-    break-inside: avoid;
-    margin-bottom: var(--sp-md);
+/* Horizontal Slider (Thumbnails & AI) */
+.portfolio-slider-container {
     width: 100%;
+    overflow: hidden;
+    padding: var(--sp-sm) 0;
 }
 
-.portfolio-item-split .portfolio-item {
-    flex: 1;
-    margin-bottom: 0;
-    /* Remove bottom margin inside split */
-}
-
-/* Versatility Grid - Specific Override */
-.versatility-grid {
+.portfolio-slider {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: var(--sp-md);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: var(--sp-sm);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-accent) var(--clr-accent-subtle);
 }
 
-.versatility-grid .portfolio-item {
-    flex: 0 1 calc(33.333% - var(--sp-md));
-    /* 3 items per row */
-    min-width: 280px;
-    /* Responsive break */
-    margin-bottom: 0;
-}
-
-/* AI Slider */
+/* AI Specific Slider Style */
 .ai-slider-container {
     width: 100%;
     overflow: hidden;
@@ -464,29 +430,15 @@ footer {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--clr-accent) #333;
-    /* Darker track for AI section */
-    justify-content: start;
-    /* Align to start for scroll */
-}
-
-.ai-slider::-webkit-scrollbar {
-    height: 8px;
-}
-
-.ai-slider::-webkit-scrollbar-track {
-    background: #333;
-    border-radius: 4px;
-}
-
-.ai-slider::-webkit-scrollbar-thumb {
-    background-color: var(--clr-accent);
-    border-radius: 4px;
+    /* Dark track */
+    justify-content: center;
+    /* Centered initial view */
 }
 
 .ai-item {
     flex: 0 0 auto;
-    height: 250px;
-    /* Fixed height for consistency in slider */
+    height: 300px;
+    /* Taller for AI visuals */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -496,13 +448,43 @@ footer {
 .ai-item img {
     height: 100%;
     width: auto;
-    /* Maintain aspect ratio based on height */
     object-fit: contain;
     background-color: #000;
 }
 
 .ai-item:hover {
     transform: scale(1.02);
+    z-index: 2;
+}
+
+
+/* Thumbnails Section specific */
+.thumbnails-section {
+    background-color: var(--clr-bg);
+    padding: var(--sp-xl) 0;
+}
+
+.portfolio-slider-item {
+    flex: 0 0 auto;
+    height: 200px;
+    /* Fixed height for consistent strip */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--clr-accent-subtle);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-slider-item img {
+    height: 100%;
+    width: auto;
+    /* Width adjusts to maintain aspect ratio */
+    object-fit: contain;
+    display: block;
+}
+
+.portfolio-slider-item:hover {
+    transform: translateY(-5px);
 }
 
 /* Animations */
@@ -530,6 +512,43 @@ footer {
     transition-delay: 300ms;
 }
 
+/* Software Skills Grid */
+.software-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    /* Slightly smaller min-width */
+    gap: var(--sp-md);
+    margin-top: var(--sp-md);
+    text-align: center;
+}
+
+.software-item {
+    padding: var(--sp-sm);
+    /* Reduced padding */
+    background: white;
+    border: 1px solid var(--clr-accent-subtle);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.software-item:hover {
+    border-color: var(--clr-accent);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.software-item h4 {
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    color: var(--clr-text);
+    margin: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .portfolio-grid {
@@ -550,99 +569,14 @@ footer {
         /* Add padding since height is auto */
     }
 
+    .portfolio-slider {
+        justify-content: start;
+        /* Allow scrolling on mobile */
+    }
+
     @media (max-width: 600px) {
         .portfolio-grid {
             column-count: 1;
         }
     }
-}
-
-/* Horizontal Slider (Standard) */
-.portfolio-slider-container {
-    width: 100%;
-    overflow: hidden;
-    padding: var(--sp-sm) 0;
-}
-
-.portfolio-slider {
-    display: flex;
-    gap: var(--sp-md);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: var(--sp-sm);
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--clr-accent) var(--clr-accent-subtle);
-    align-items: center;
-    /* Align items vertically center */
-}
-
-/* Main Portfolio Items (Larger) */
-.portfolio-slider-item {
-    flex: 0 0 auto;
-    height: 350px;
-    /* Taller for main portfolio clarity */
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: var(--clr-accent-subtle);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-slider-item img {
-    height: 100%;
-    width: auto;
-    /* Width adjusts to maintain aspect ratio */
-    object-fit: contain;
-    display: block;
-    background-color: #fff;
-    /* White bg for transparent images */
-}
-
-.portfolio-slider-item:hover {
-    transform: translateY(-5px);
-}
-
-/* Thumbnail Specific Override */
-.thumbnail-slider .portfolio-slider-item {
-    height: 200px;
-    /* Smaller for thumbnails */
-}
-
-/* Specific Updates for AI Slider to match Global if needed, or keep distinct dark mode */
-
-
-/* Software Skills Grid */
-.software-skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--sp-md);
-    margin-top: var(--sp-md);
-    text-align: center;
-}
-
-.software-item {
-    padding: var(--sp-md);
-    background: white;
-    border: 1px solid var(--clr-accent-subtle);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.software-item:hover {
-    border-color: var(--clr-accent);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transform: translateY(-3px);
-}
-
-.software-item h4 {
-    font-size: 1.1rem;
-    font-family: var(--font-heading);
-    color: var(--clr-text);
-    margin-top: 0;
 }
