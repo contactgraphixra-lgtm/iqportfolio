@@ -26,8 +26,10 @@
     --sp-xs: 0.5rem;
     --sp-sm: 1rem;
     --sp-md: 2rem;
-    --sp-lg: 4rem;
-    --sp-xl: 8rem;
+    --sp-lg: 3.5rem;
+    /* Reduced from 4rem */
+    --sp-xl: clamp(4rem, 8vw, 6rem);
+    /* Reduced from 8rem and made responsive */
 }
 
 html {
@@ -38,7 +40,8 @@ body {
     background-color: var(--clr-bg);
     color: var(--clr-text);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.7;
+    /* Increased slightly for better readability */
     overflow-x: hidden;
 }
 
@@ -51,12 +54,14 @@ h5,
 h6 {
     font-family: var(--font-heading);
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 1.2;
     color: var(--clr-text);
+    margin-bottom: var(--sp-sm);
 }
 
 .section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3rem);
+    /* Slightly reduced max size for balance */
     margin-bottom: var(--sp-md);
     position: relative;
     padding-bottom: var(--sp-sm);
@@ -74,10 +79,13 @@ h6 {
 }
 
 p {
-    margin-bottom: var(--sp-sm);
-    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    /* Increased specific paragraph spacing */
+    font-size: 1.125rem;
+    /* Slightly larger for modern readability */
     color: #4a4a4a;
-    /* Slightly softer for reading */
+    max-width: 75ch;
+    /* Optimal looking measure */
 }
 
 a {
@@ -138,7 +146,8 @@ a {
 
 /* Hero Section */
 .hero {
-    height: 85vh;
+    min-height: 80vh;
+    /* Changed from fixed height to min-height */
     display: flex;
     align-items: center;
     position: relative;
@@ -161,7 +170,8 @@ a {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-size: clamp(3rem, 6vw, 5rem);
+    /* Adjusted clamp */
     /* Reduced size to look 'normal' */
     margin-bottom: var(--sp-sm);
     /* Increased spacing */
