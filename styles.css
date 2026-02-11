@@ -473,7 +473,7 @@ footer {
 
 .ai-item {
     flex: 0 0 auto;
-    height: 500px;
+    height: 250px;
     /* Fixed height for consistency in slider */
     border-radius: 8px;
     overflow: hidden;
@@ -579,8 +579,8 @@ footer {
 
 .portfolio-slider-item {
     flex: 0 0 auto;
-    height: 350px;
-    /* Reduced height for better visual balance */
+    height: 250px;
+    /* Further reduced height for smaller thumbnails */
     border-radius: 4px;
     overflow: hidden;
     background-color: var(--clr-accent-subtle);
